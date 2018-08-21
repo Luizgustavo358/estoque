@@ -18,7 +18,7 @@ class ProdutoController extends Controller {
         }// end foreach
 
         $html .= '</ul>';
-
+        
         return $html;
     }// end lista()
 }// end class
