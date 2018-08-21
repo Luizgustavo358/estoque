@@ -12,31 +12,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Model::unguard();
-
-        $this->call(ProdutoTableSeeder::class);
+        $this->call('ProdutoTableSeeder');
     }// end run
 }// end DatabaseSeeder
 
-class ProdutoTableSeeder extends Seeder {
-
-    public function run() {
-        DB::insert('insert into produtos
-        (nome, quantidade, valor, descricao)
-        values(?,?,?,?)',
-        array('Geladeira', 2, 5900.00, 
-        'Side by Side com gelo na porta'));
-
-        DB::insert('insert into produtos
-        (nome, quantidade, valor, descricao)
-        values (?,?,?,?)',
-        array('Fogão', 5, 950.00,
-        'Painel automático e forno elétrico'));
-
-        DB::insert('insert into produtos
-        (nome, quantidade, valor, descricao)
-        values (?,?,?,?)',
-        array('Microondas', 1, 1520.00,
-        'Manda SMS quando termina de esquentar'));
+class ProdutoTableSeeder extends Seeder 
+{
+    public function run() 
+    {
+        // inserindo dados na tabela
+        DB::table('produtos')->insert(array(
+            array(
+                'nome'       => 'Geladeira',
+                'quantidade' => 2,
+                'valor'      => 59,
+                'descricao'  => 'Side by Side com gelo na porta',
+            ),
+            array(
+                'nome'       => 'Fogão',
+                'quantidade' => 5,
+                'valor'      => 95,
+                'descricao'  => 'Painel automático e forno elétrico',
+            ),
+            array(
+                'nome'       => 'Microondas',
+                'quantidade' => 1,
+                'valor'      => 152,
+                'descricao'  => 'Manda SMS quando termina de esquentar',
+            ),
+        )); 
     }// end run
 }// end ProdutoTableSeeder

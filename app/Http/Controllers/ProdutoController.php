@@ -14,7 +14,7 @@ class ProdutoController extends Controller {
         $produtos = DB::select('select * from produtos');
         
         foreach($produtos as $p) {
-            $html .= '<li> Nome: '. $p->nome .', Descrição: '. $p->descricao .'</li>';
+            $html .= '<li> <b>Nome:</b> '. $p->nome .',<br> <b>Descrição:</b> '. $p->descricao .'</li><br>';
         }// end foreach
 
         $html .= '</ul>';
