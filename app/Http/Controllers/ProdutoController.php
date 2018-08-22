@@ -12,6 +12,8 @@ class ProdutoController extends Controller {
 
         $produtos = DB::select('select * from produtos');
         
-        return view('listagem')->with('produtos', $produtos);
+        $data = ['produtos' => $produtos];
+
+        return view('listagem', $data);
     }// end lista()
 }// end class
