@@ -6,29 +6,31 @@
     </head>
 
     <body>
-        <h1>Listagem de Produtos</h1>
-        <br />
-        <table class="table table-striped table-bordered">
-            <tr>
-                <td><b>Nome</b></td>
-                <td><b>Valor</b></td>
-                <td><b>Descrição</b></td>
-                <td><b>Quantidade</b></td>
-                <td><b>Link</b></td>
-            </tr>
-            <?php foreach($produtos as $p): ?>
-            <tr>
-                <td><?= $p->nome ?></td>
-                <td><?= $p->valor ?></td>
-                <td><?= $p->descricao ?></td>
-                <td><?= $p->quantidade ?></td>
-                <td>
-                    <a href="/produtos/mostra">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </a>
-                </td>
-            </tr>
-            <?php endforeach ?>
-        </table>
+        <div class="container">
+            <h1>Listagem de Produtos</h1>
+            <br />
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <td><b>Nome</b></td>
+                    <td><b>Valor</b></td>
+                    <td><b>Descrição</b></td>
+                    <td><b>Quantidade</b></td>
+                    <td><b>Link</b></td>
+                </thead>
+                <?php foreach($produtos as $p): ?>
+                <tr>
+                    <td><?= $p->nome ?></td>
+                    <td><?= $p->valor ?></td>
+                    <td><?= $p->descricao ?></td>
+                    <td><?= $p->quantidade ?></td>
+                    <td>
+                        <a href="/Lulu/estoque/public/produtos/mostra/<?= $p->id ?>">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                    </td>
+                </tr>
+                <?php endforeach ?>
+            </table>
+        </div>
     </body>
 </html>

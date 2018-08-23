@@ -18,3 +18,6 @@ Route::get('/', function () {
 
 // Produtos
 Route::get('/produtos', 'ProdutoController@lista');
+
+// Mostra produtos
+Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra');
