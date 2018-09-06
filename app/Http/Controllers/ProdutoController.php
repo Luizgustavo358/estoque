@@ -3,7 +3,7 @@
 namespace estoque\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-
+use Request;
 use estoque\Produto;
 
 class ProdutoController extends Controller {
@@ -21,13 +21,13 @@ class ProdutoController extends Controller {
 
     public function mostra($id) {
         // faz um select
-        $resposta = DB::select('select * from produtos where id = ?', [$id]);
+        $resposta = DB::select('select * from produtos where id = ?',[$id]);
 
         // se nao existir o produto mostra essa mensagem
         if(empty($resposta)) {
             return "<h2>Esse produto não existe</h2>";
         }// end if
 
-        return view('detalhes')->with('produtos', $resposta[0]);
+        return view('detalhes')->with('produtos', $resposta);
     }// end mostra()
 }// end class
