@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace estoque\Http\Controllers;
 
@@ -6,19 +6,30 @@ use Illuminate\Support\Facades\DB;
 use Request;
 use estoque\Produto;
 
+
+/**
+ * Class ProdutoController
+ * @package estoque\Http\Controllers
+ */
 class ProdutoController extends Controller {
 
+    /**
+     * Metodo lista().
+     * @return $this
+     */
     public function lista() {
         // faz um select e guarda na variavel
         $produtos = DB::select('select * from produtos');
-        
-        // armazena em um array
-        $data = ['produtos' => $produtos];
 
-        return view('listagem', $data);
+        return view('produto.listagem')->with('produtos', $produtos);
     }// end lista()
 
 
+    /**
+     * Metodo mostra().
+     * @param $id
+     * @return $this|string
+     */
     public function mostra($id) {
         // faz um select
         $resposta = DB::select('select * from produtos where id = ?',[$id]);
@@ -28,6 +39,6 @@ class ProdutoController extends Controller {
             return "<h2>Esse produto não existe</h2>";
         }// end if
 
-        return view('detalhes')->with('produtos', $resposta);
+        return view('produto.detalhes')->with('produtos', $resposta);
     }// end mostra()
 }// end class
