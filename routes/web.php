@@ -11,13 +11,24 @@
 |
 */
 
+
 // Home
 Route::get('/', function () {
     return '<h1>Primeira lógica com Laravel</h1>';
 });
 
+
 // Produtos
 Route::get('/produtos', 'ProdutoController@lista');
 
+
 // Mostra produtos
 Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra')->where('id', '[0-9]+');
+
+
+// Adiciona novo produto
+Route::get('/produtos/novo', 'ProdutoController@novo');
+
+
+// Adiciona no banco de dados
+Route::post('/produtos/adiciona', 'ProdutoController@adiciona');

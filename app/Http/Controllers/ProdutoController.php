@@ -4,7 +4,7 @@ namespace estoque\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Request;
-use estoque\Produto;
+//use estoque\Produto;
 
 
 /**
@@ -32,7 +32,7 @@ class ProdutoController extends Controller {
      */
     public function mostra($id) {
         // faz um select
-        $resposta = DB::select('select * from produtos where id = ?',[$id]);
+        $resposta = DB::select('select * from produtos where id = ?', [$id]);
 
         // se nao existir o produto mostra essa mensagem
         if(empty($resposta)) {
@@ -41,4 +41,35 @@ class ProdutoController extends Controller {
 
         return view('produto.detalhes')->with('produtos', $resposta);
     }// end mostra()
+
+
+    /**
+     * Metodo novo().
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function novo() {
+        return view('produto.formulario');
+    }// end novo()
+
+
+    public function adiciona() {
+        // pegar dados do formulario
+        $nome       = Request::input('nome');
+        $descricao  = Request::input('descricao');
+        $valor      = Request::input('valor');
+        $quantidade = Request::input('quantidade');
+
+
+        // salvar no banco de dados
+        DB::table('produtos')->insert(
+            [
+                'nome' => $nome,
+                'quantidade' => $quantidade,
+                'valor' => $valor,
+                'descricao' => $descricao
+            ]
+        );
+
+        return redirect('/produtos')->withInput(Request::only('nome'));
+    }// end adiciona()
 }// end class

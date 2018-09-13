@@ -1,26 +1,28 @@
 nav.navbar.navbar-default{
-    background-color: #337ab7;
+    background-color: #e5e5e5;
     border-color: #2e6da4;
     margin-top: 10px;
 }
-
 nav.navbar.navbar-default a {
-    color: white;
+    color: #363636;
 }
-
 li p.navbar-text, a.navbar-brand {
-    color: white!important ;
+    color: #363636!important ;
     font-weight: bolder;
 }
 
-footer.footer {
-    background-color: #337ab7;
-    border-color: #2e6da4;
-    margin-top: 55px;
-    color: white;
-    border-radius: 5px;
+.fa-trash-alt {
+    color: #575a60;
 }
 
-footer.footer p {
-    padding: 10px;
+.fa-search {
+    color: #575a60;
+}
+
+.fa-boxes {
+    padding-right: 5px;
+}
+
+.fa-edit{
+    color: #575a60;
 }
