@@ -2,6 +2,7 @@
 
 namespace estoque\Http\Controllers;
 
+use estoque\Produto;
 use Illuminate\Support\Facades\DB;
 use Request;
 //use estoque\Produto;
@@ -19,7 +20,7 @@ class ProdutoController extends Controller {
      */
     public function lista() {
         // faz um select e guarda na variavel
-        $produtos = DB::select('select * from produtos');
+        $produtos = Produto::all();
 
         return view('produto.listagem')->with('produtos', $produtos);
     }// end lista()
@@ -32,14 +33,14 @@ class ProdutoController extends Controller {
      */
     public function mostra($id) {
         // faz um select
-        $resposta = DB::select('select * from produtos where id = ?', [$id]);
+        $resposta = Produto::find($id);
 
         // se nao existir o produto mostra essa mensagem
         if(empty($resposta)) {
             return "<h2>Esse produto não existe</h2>";
         }// end if
 
-        return view('produto.detalhes')->with('produtos', $resposta);
+        return view('produto.detalhes')->with('p', $resposta);
     }// end mostra()
 
 
@@ -52,24 +53,30 @@ class ProdutoController extends Controller {
     }// end novo()
 
 
+    /**
+     * Metodo adiciona().
+     * @return $this
+     */
     public function adiciona() {
         // pegar dados do formulario
-        $nome       = Request::input('nome');
-        $descricao  = Request::input('descricao');
-        $valor      = Request::input('valor');
-        $quantidade = Request::input('quantidade');
+        $params = Request::all();
 
+        // cria e coloca no BD
+        Produto::create($params);
 
-        // salvar no banco de dados
-        DB::table('produtos')->insert(
-            [
-                'nome' => $nome,
-                'quantidade' => $quantidade,
-                'valor' => $valor,
-                'descricao' => $descricao
-            ]
-        );
-
-        return redirect('/produtos')->withInput(Request::only('nome'));
+        return redirect()
+            ->action('ProdutoController@lista')
+            ->withInput(Request::only('nome'));
     }// end adiciona()
+
+
+    /**
+     * Metodo listaJson().
+     * @return array
+     */
+    public function listaJson() {
+        $produtos = Produto::all();
+
+        return response()->json($produtos);
+    }// end listaJson()
 }// end class

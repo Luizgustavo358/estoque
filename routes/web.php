@@ -32,3 +32,6 @@ Route::get('/produtos/novo', 'ProdutoController@novo');
 
 // Adiciona no banco de dados
 Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
+
+
+Route::get('produtos/json', 'ProdutoController@listaJson');

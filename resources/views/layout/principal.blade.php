@@ -16,13 +16,13 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="/Lulu/estoque/public/produtos">
+                        <a class="navbar-brand" href="{{ action('ProdutoController@lista') }}">
                             Estoque Laravel
                         </a>
                     </div>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/Lulu/estoque/public/produtos">Listagem</a></li>
-                        <li><a href="/Lulu/estoque/public/produtos/novo">Novo</a></li>
+                        <li><a href="{{ action('ProdutoController@lista') }}">Listagem</a></li>
+                        <li><a href="{{ action('ProdutoController@novo') }}">Novo</a></li>
                     </ul>
                 </div>
             </nav>

@@ -6,7 +6,7 @@
             Você não tem nenhum produto cadastro.
         </div>
     @else
-        <h1>Listagem de Produtos</h1>
+        <h3>Listagem de Produtos</h3>
         <br />
         <table class="table table-striped table-bordered table-hover">
             <thead>
