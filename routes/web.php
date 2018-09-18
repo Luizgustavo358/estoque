@@ -34,4 +34,17 @@ Route::get('/produtos/novo', 'ProdutoController@novo');
 Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
 
 
+// JSON
 Route::get('produtos/json', 'ProdutoController@listaJson');
+
+
+// Remove produto do Banco de Dados
+Route::get('/produtos/excluir/{id}', 'ProdutoController@remove')->where('id', '[0-9]+');
+
+
+// Edita o produto do Banco de Dados
+Route::get('/produtos/editar/{id}', 'ProdutoController@editar')->where('id', '[0-9]+');
+
+
+// Atualiza o produto
+Route::post('/produtos/atualizar', 'ProdutoController@atualizar');

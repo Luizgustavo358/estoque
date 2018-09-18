@@ -4,6 +4,7 @@ namespace estoque\Http\Controllers;
 
 use estoque\Produto;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Request;
 //use estoque\Produto;
 
@@ -58,6 +59,26 @@ class ProdutoController extends Controller {
      * @return $this
      */
     public function adiciona() {
+        // validacao
+        $validator = Validator::make(
+            [
+                'nome'       => Request::input('nome'),
+                'descricao'  => Request::input('descricao'),
+                'valor'      => Request::input('valor'),
+                'quantidade' => Request::input('quantidade')
+            ],
+            [
+                'nome'       => 'required|min:5',
+                'descricao'  => 'required|max:255',
+                'valor'      => 'required|numeric',
+                'quantidade' => 'required|numeric'
+            ]
+        );
+
+        if($validator->fails()) {
+            return redirect()->action('ProdutoController@novo');
+        }// end if
+
         // pegar dados do formulario
         $params = Request::all();
 
@@ -79,4 +100,58 @@ class ProdutoController extends Controller {
 
         return response()->json($produtos);
     }// end listaJson()
+
+
+    /**
+     * Metodo remove().
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function remove($id) {
+        // acha o produto
+        $produto = Produto::find($id);
+
+        // deleta produto
+        $produto->delete();
+
+        return redirect()->action('ProdutoController@lista');
+    }// end remove()
+
+
+    /**
+     * Metodo up().
+     * @param $id
+     * @return $this
+     */
+    public function editar($id) {
+        // faz um select
+        $resposta = Produto::find($id);
+
+        return view('produto.editar')->with('p', $resposta);
+    }// end editar()
+
+
+    /**
+     * Metodo atualiza().
+     * @return $this
+     */
+    public function atualizar() {
+        // pega os campos
+        $id = Request::input('id');
+
+        // busca o produto
+        $produto = Produto::find($id);
+
+        // atualiza os campos
+        $produto->nome       = Request::input('nome');
+        $produto->descricao  = Request::input('descricao');
+        $produto->valor      = Request::input('valor');
+        $produto->quantidade = Request::input('quantidade');
+
+        // da o commit
+        $produto->save();
+
+        return redirect()
+            ->action('ProdutoController@editar', $id);
+    }// end atualizar()
 }// end class

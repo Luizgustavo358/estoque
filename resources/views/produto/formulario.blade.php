@@ -1,9 +1,9 @@
 @extends('layout.principal')
 
 @section('conteudo')
-    <h3>Novo produto</h3>
-    <br>
     <div class="container">
+        <h3>Novo produto</h3>
+        <br>
         <div class="row">
             <form action="/Lulu/estoque/public/produtos/adiciona" method="post">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -32,8 +32,8 @@
                     <input name="quantidade" type="number" class="form-control" />
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block">
-                    Submit
+                <button type="submit" class="btn btn-primary">
+                    Adicionar
                 </button>
             </form>
         </div>

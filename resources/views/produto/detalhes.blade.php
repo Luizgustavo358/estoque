@@ -1,9 +1,9 @@
 @extends('layout.principal')
 
 @section('conteudo')
-    <h3>Detalhes do produto: {{ $p->nome }}</h3>
-    <br>
     <div class="container">
+        <h3>Detalhes do produto: {{ $p->nome }}</h3>
+        <br>
         <div class="row">
             <ul>
                 <li><b>Valor:</b> R$ {{ $p->valor }}</li>

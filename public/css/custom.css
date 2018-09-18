@@ -1,5 +1,5 @@
 nav.navbar.navbar-default{
-    background-color: #e5e5e5;
+    background-color: #FFFF;
     border-color: #2e6da4;
     margin-top: 10px;
 }
@@ -25,4 +25,15 @@ li p.navbar-text, a.navbar-brand {
 
 .fa-edit{
     color: #575a60;
+}
+
+.footer {
+    display: block;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
 }
