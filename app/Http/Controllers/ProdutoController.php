@@ -2,11 +2,11 @@
 
 namespace estoque\Http\Controllers;
 
+use estoque\Http\Requests\ProdutosRequest;
 use estoque\Produto;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Request;
-//use estoque\Produto;
 
 
 /**
@@ -58,32 +58,10 @@ class ProdutoController extends Controller {
      * Metodo adiciona().
      * @return $this
      */
-    public function adiciona() {
-        // validacao
-        $validator = Validator::make(
-            [
-                'nome'       => Request::input('nome'),
-                'descricao'  => Request::input('descricao'),
-                'valor'      => Request::input('valor'),
-                'quantidade' => Request::input('quantidade')
-            ],
-            [
-                'nome'       => 'required|min:5',
-                'descricao'  => 'required|max:255',
-                'valor'      => 'required|numeric',
-                'quantidade' => 'required|numeric'
-            ]
-        );
-
-        if($validator->fails()) {
-            return redirect()->action('ProdutoController@novo');
-        }// end if
-
-        // pegar dados do formulario
-        $params = Request::all();
+    public function adiciona(ProdutosRequest $request) {
 
         // cria e coloca no BD
-        Produto::create($params);
+        Produto::create($request->all());
 
         return redirect()
             ->action('ProdutoController@lista')
@@ -151,7 +129,6 @@ class ProdutoController extends Controller {
         // da o commit
         $produto->save();
 
-        return redirect()
-            ->action('ProdutoController@editar', $id);
+        return redirect()->action('ProdutoController@editar', $id);
     }// end atualizar()
 }// end class

@@ -125,8 +125,14 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'nome' => [
+            'required' => 'O campo :attribute não pode ser vazio.',
+        ],
+        'descricao' => [
+            'required' => 'O campo :attribute não pode ser vazio.',
+        ],
+        'valor' => [
+            'required' => 'O campo :attribute não pode ser vazio.',
         ],
     ],
 
