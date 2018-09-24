@@ -30,10 +30,13 @@ class ProdutosRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return array
+     */
     public function messages()
     {
         return [
-            'nome.required' => 'O campo :attribute não pode ser vazio.',
+            'required' => 'O campo :attribute não pode ser vazio.'
         ];
     }
 }

@@ -19,6 +19,10 @@ class Kernel extends HttpKernel
         \estoque\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \estoque\Http\Middleware\TrustProxies::class,
+        \Illuminate\Session\Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \estoque\Http\Middleware\VerifyCsrfToken::class,
+        \estoque\Http\Middleware\AutorizacaoMiddleware::class,
     ];
 
     /**

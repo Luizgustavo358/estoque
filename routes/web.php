@@ -11,11 +11,10 @@
 |
 */
 
-
-// Home
 Route::get('/', function () {
-    return '<h1>Primeira lógica com Laravel</h1>';
+    view('welcome');
 });
+
 
 // Produtos
 Route::get('/produtos', 'ProdutoController@lista');
@@ -47,3 +46,17 @@ Route::get('/produtos/editar/{id}', 'ProdutoController@editar')->where('id', '[0
 
 // Atualiza o produto
 Route::post('/produtos/atualizar', 'ProdutoController@atualizar');
+
+
+Auth::routes();
+
+
+// Home
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+// Login
+Route::get('/login', 'LoginController@login');
+
+
+
