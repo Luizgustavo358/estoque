@@ -1,9 +1,9 @@
 <?php namespace estoque\Http\Controllers;
 
-use estoque\Http\Request;
+//use estoque\Http\Request;
 use estoque\Http\Controllers\Controller;
 
-//use Request;
+use Request;
 use Auth;
 use estoque\Produto;
 
@@ -34,7 +34,7 @@ class LoginController extends Controller
     {
         if(Auth::guest())
         {
-            return redirect('/auth/login');
+            return redirect('/login');
         }// end if
 
         $produto = Produto::find($id);
@@ -42,5 +42,5 @@ class LoginController extends Controller
         $produto->delete();
 
         return redirect()->action('ProdutoController@lista');
-    }
+    }// end remove()
 }// end class

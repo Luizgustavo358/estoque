@@ -59,4 +59,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login', 'LoginController@login');
 
 
-
+Route::get('/logout', function () {
+   Auth::logout();
+});

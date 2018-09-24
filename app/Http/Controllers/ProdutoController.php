@@ -16,6 +16,15 @@ use Request;
 class ProdutoController extends Controller {
 
     /**
+     * ProdutoController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('nosso-middleware',
+            ['only' => ['adiciona', 'remove']]);
+    }// end construct()
+
+    /**
      * Metodo lista().
      * @return $this
      */

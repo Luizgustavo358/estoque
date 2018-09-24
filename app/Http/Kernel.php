@@ -22,7 +22,7 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \estoque\Http\Middleware\VerifyCsrfToken::class,
-        \estoque\Http\Middleware\AutorizacaoMiddleware::class,
+//        \estoque\Http\Middleware\AutorizacaoMiddleware::class,
     ];
 
     /**
@@ -63,5 +63,6 @@ class Kernel extends HttpKernel
         'guest' => \estoque\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'nosso-middleware' => \estoque\Http\Middleware\AutorizacaoMiddleware::class,
     ];
-}
+}// end class kernel
